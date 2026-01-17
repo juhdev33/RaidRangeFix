@@ -1,0 +1,9 @@
+## Interface: 20505
+## Title: RaidRangeFix
+## Notes: Workaround for bugged range in CompactRaidFrame
+## Author: D
+## Version: 1.0
+## SavedVariables:
+## SavedVariablesPerCharacter:
+
+range.lua
