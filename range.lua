@@ -4,9 +4,7 @@ RRFix = {
 
 -- should catch creation of all raid groups, main tank, raid pet frames etc
 hooksecurefunc("CompactUnitFrame_OnLoad", function(frame)
-  if not RRFix.loadedCUFs[frame] then
-    RRFix.loadedCUFs[frame] = true
-  end
+  RRFix.loadedCUFs[frame] = true
 end)
 
 -- seem to be created before our code is loaded
