@@ -15,15 +15,7 @@ for i = 1, 5 do
   RRFix.loadedCUFs[_G["CompactPartyFramePet" .. i]] = true
 end
 
-local updater = CreateFrame("Frame")
-local elapsed = 0
-local throttleSeconds = 0.2
-
-updater:SetScript("OnUpdate", function(_, dt)
-  elapsed = elapsed + dt
-  if elapsed < throttleSeconds then return end
-  elapsed = 0
-
+C_Timer.NewTicker(0.2, function()
   for frame in pairs(RRFix.loadedCUFs) do
     if frame and frame:IsShown() then
       local unit = frame.displayedUnit
@@ -44,8 +36,9 @@ StaticPopupDialogs["RANGE_FIX_WARNING"] = {
   hideOnEscape = true,
 }
 
-updater:RegisterEvent("UNIT_IN_RANGE_UPDATE")
-updater:SetScript("OnEvent", function()
-  updater:UnregisterEvent("UNIT_IN_RANGE_UPDATE")
+local eframe = CreateFrame("Frame")
+eframe:RegisterEvent("UNIT_IN_RANGE_UPDATE")
+eframe:SetScript("OnEvent", function()
+  eframe:UnregisterEvent("UNIT_IN_RANGE_UPDATE")
   StaticPopup_Show("RANGE_FIX_WARNING")
 end)
