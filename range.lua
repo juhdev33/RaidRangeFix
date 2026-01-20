@@ -3,8 +3,12 @@ RRFix = {
 }
 
 -- should catch creation of all raid groups, main tank, raid pet frames etc
+-- includes the nameplates which get created with nil name, dont add those
 hooksecurefunc("CompactUnitFrame_OnLoad", function(frame)
-  RRFix.loadedCUFs[frame] = true
+  local name = frame:GetName()
+  if name and name:sub(1,7) == "Compact" then
+    RRFix.loadedCUFs[frame] = true
+  end
 end)
 
 -- seem to be created before our code is loaded
